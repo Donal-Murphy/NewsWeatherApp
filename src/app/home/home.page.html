@@ -12,7 +12,8 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="centered-content"></div>
-  <ion-textarea label="Enter Country" placeholder="Country Name" class="full-width-textarea"></ion-textarea>
-  <ion-button [routerLink]="['/countries']" expand="block" class="wide-button">SEARCH</ion-button>
+  <div class="centered-content">
+    <ion-textarea [(ngModel)]="userInput" label="Enter Country" placeholder="Country Name" style="width: 50%;"></ion-textarea>
+    <ion-button class="wide-button" (click)="countrySearch()" style="width: 50%;" >SEARCH</ion-button>
+  </div>
 </ion-content>
