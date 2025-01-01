@@ -12,14 +12,14 @@ import { MyDataService } from '../services/my-data.service';
   imports: [IonCheckbox, IonList, IonItem, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonLabel]
 })
 export class SettingsPage implements OnInit {
-  selectedOption: string = 'Metric'; // Default units option
+  selectedOption: string = ''; // Default units option
 
   constructor(private MyDataService: MyDataService) {}
 
   async ngOnInit() {
     // Load the stored units option
-    const storedOption = await this.MyDataService.get('units');
-    this.selectedOption = storedOption || 'Metric';
+    const storedOption = await this.MyDataService.get('units'); //Get value for units from storage
+    this.selectedOption = storedOption; //Set current selected option to stored option
   }
 
   async onOptionChange(option: string) {

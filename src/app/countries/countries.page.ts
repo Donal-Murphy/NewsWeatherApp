@@ -67,12 +67,16 @@ export class CountriesPage implements OnInit {
 
   //Sends country code to news page
   countryNewsSearch(countryCode:string, countryName:string){
-    this.router.navigate(['/news'], { queryParams: { countryCode: countryCode, countryName: countryName} }); // Navigate to a news page & pass countryCode
+    // Navigate to a news page & pass params
+    this.router.navigate(['/news'], { queryParams: { countryCode: countryCode, countryName: countryName} }); 
   }
 
   //Sends country code to weather page
-  countryWeatherSearch(countryCode:string){
-    this.router.navigate(['/weather'], { queryParams: { countryCode } }); // Navigate to a weather page & pass countryCode
+  countryWeatherSearch(capitalCoord:number[]){
+    // Navigate to a weather page & pass params
+    this.router.navigate(['/weather'], { 
+      queryParams: { capitalCoord: capitalCoord } 
+    }); 
   }
 
   // Method to show an alert if no data is found

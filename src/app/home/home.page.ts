@@ -5,6 +5,7 @@ import { settingsOutline } from 'ionicons/icons';
 import { RouterLink } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
+import { MyDataService } from '../services/my-data.service';
 
 @Component({
   selector: 'app-home',

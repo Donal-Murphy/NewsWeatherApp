@@ -14,6 +14,8 @@ import { HttpOptions } from '@capacitor/core';
   imports: [IonCardTitle, IonCardContent, IonCard, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCardHeader]
 })
 export class NewsPage implements OnInit {
+  myNewsAPIKey: string = 'pub_6395725db9955eaaa1ef854417fc8c8c1ef77' //API key for newdata.io
+
   countryCode: string =''; //For storing countryCode. Initialise as null
   countryName: string = ''; //For storing countryName. Initialise as null
   newsData: any [] = []; //For storing country data from newsdata.io API. Initialize as empty array
@@ -34,7 +36,8 @@ export class NewsPage implements OnInit {
 
     // Check if countryCode is not null and not an empty string
     if (this.countryCode) {
-      this.options.url = `https://newsdata.io/api/1/latest?apikey=pub_6395725db9955eaaa1ef854417fc8c8c1ef77&country=${this.countryCode}`;
+      //API call URL
+      this.options.url = `https://newsdata.io/api/1/latest?apikey=${this.myNewsAPIKey}&country=${this.countryCode}`;
 
       this.getNews(); // Call the method to get news after getting countryCode
     } else {

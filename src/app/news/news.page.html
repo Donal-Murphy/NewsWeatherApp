@@ -8,7 +8,7 @@
 <p *ngIf="errorMessage">{{ errorMessage }}</p>
 
 
-<ion-content *ngIf="newsData.length > 0" [fullscreen]="true">
+<ion-content *ngIf="newsData && newsData.length > 0" [fullscreen]="true">
   <!-- Display news cards if newsData has items -->
   <ion-card *ngFor="let newsItem of newsData" >
     <img *ngIf="newsItem.image_url" [src]="newsItem.image_url" alt="Article: {{newsItem.title}}" style="height: 200px; object-fit: cover;" />

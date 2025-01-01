@@ -12,6 +12,10 @@ export class MyDataService {
 
    async init() {
     await this.storage.create();
+    //Initialise default units if value is not already set
+    if (!this.storage.get('units')){
+      this.storage.set('units','metric');
+    }
    }
 
    async set(key:string, value:any) {

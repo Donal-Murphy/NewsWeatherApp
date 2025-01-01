@@ -13,7 +13,7 @@
   
     <ion-card-content>
       <ion-button (click)="countryNewsSearch(country.cca2, country.name.official)">News</ion-button>
-      <ion-button (click)="countryWeatherSearch(country.cca2)">Weather</ion-button>
+      <ion-button (click)="countryWeatherSearch(country.capitalInfo.latlng)">Weather</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>
