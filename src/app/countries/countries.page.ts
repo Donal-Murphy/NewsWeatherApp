@@ -66,11 +66,11 @@ export class CountriesPage implements OnInit {
   }
 
   //Sends country code to news page
-  countryNewsSearch(countryCode:string){
-    this.router.navigate(['/news'], { queryParams: { countryCode } }); // Navigate to a news page & pass countryCode
+  countryNewsSearch(countryCode:string, countryName:string){
+    this.router.navigate(['/news'], { queryParams: { countryCode: countryCode, countryName: countryName} }); // Navigate to a news page & pass countryCode
   }
 
-  //Sends country code to news page
+  //Sends country code to weather page
   countryWeatherSearch(countryCode:string){
     this.router.navigate(['/weather'], { queryParams: { countryCode } }); // Navigate to a weather page & pass countryCode
   }

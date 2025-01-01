@@ -15,6 +15,7 @@ import { HttpOptions } from '@capacitor/core';
 })
 export class NewsPage implements OnInit {
   countryCode: string =''; //For storing countryCode. Initialise as null
+  countryName: string = ''; //For storing countryName. Initialise as null
   newsData: any [] = []; //For storing country data from newsdata.io API. Initialize as empty array
   errorMessage: string = ''; // For storing error messages
   options: HttpOptions = {
@@ -29,6 +30,7 @@ export class NewsPage implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.countryCode = params['countryCode'];
+      this.countryName = params['countryName'];
 
     // Check if countryCode is not null and not an empty string
     if (this.countryCode) {
