@@ -12,8 +12,8 @@
     </ion-card-header>
   
     <ion-card-content>
-      <ion-button>News</ion-button>
-      <ion-button>Weather</ion-button>
+      <ion-button (click)="countryNewsSearch(country.cca2)">News</ion-button>
+      <ion-button (click)="countryWeatherSearch(country.cca2)">Weather</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>
