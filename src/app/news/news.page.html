@@ -1,15 +1,18 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>news</ion-title>
+    <ion-button  [routerLink]="['/home']" slot = "start" fill="clear">
+      <ion-icon slot="icon-only" name="home-outline"></ion-icon>
+    </ion-button>
+    <ion-title>News for {{countryName}}</ion-title>
+    
   </ion-toolbar>
 </ion-header>
 
 <!-- Show error message if there is one -->
 <p *ngIf="errorMessage">{{ errorMessage }}</p>
 
-
-<ion-content *ngIf="newsData && newsData.length > 0" [fullscreen]="true">
   <!-- Display news cards if newsData has items -->
+<ion-content *ngIf="newsData.length > 0" [fullscreen]="true">
   <ion-card *ngFor="let newsItem of newsData" >
     <img *ngIf="newsItem.image_url" [src]="newsItem.image_url" alt="Article: {{newsItem.title}}" style="height: 200px; object-fit: cover;" />
     <ion-card-header>

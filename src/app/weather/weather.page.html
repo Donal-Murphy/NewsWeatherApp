@@ -1,19 +1,29 @@
+
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Weather</ion-title>
+    <ion-title>Weather for {{countryCapital}}, {{countryName}}</ion-title>
+    <ion-button [routerLink]="['/home']" slot = "start" fill="clear">
+      <ion-icon slot="icon-only" name="home-outline"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
-<!-- Show error message if there is one -->
-<p *ngIf="errorMessage">{{ errorMessage }}</p>
-
-
-<ion-content *ngIf="weatherData" [fullscreen]="true">
-  <!-- Display weather cards if weatherData has items -->
+<!-- Display weather data if weatherData has necessary items -->
+<ion-content *ngIf="weatherData.weather && weatherData.weather.length > 0" [fullscreen]="true">
   <ion-card>
     <img  [src]="getImageUrl(weatherData.weather[0].icon)" alt="" />
     <ion-card-header>
       <ion-card-title>{{ weatherData.weather[0].description }}</ion-card-title>
+      <ion-card-content>{{weatherData.main.temp}} {{getUnitsText()}}</ion-card-content>
+    </ion-card-header>
+  </ion-card>
+</ion-content>
+
+<!-- Display no results message if weatherData has no items -->
+<ion-content *ngIf="!weatherData" [fullscreen]="true">
+  <ion-card color="warning">
+    <ion-card-header>
+      <ion-card-title>No weather data found for {{countryCapital}}, {{countryName}}</ion-card-title>
       <ion-card-content>{{weatherData.main.temp}} {{getUnitsText()}}</ion-card-content>
     </ion-card-header>
   </ion-card>

@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonIcon, IonButton } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { MyHttpService } from '../services/my-http.service';
 import { HttpOptions } from '@capacitor/core';
+import { addIcons } from 'ionicons';
+import { homeOutline } from 'ionicons/icons';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-news',
   templateUrl: './news.page.html',
   styleUrls: ['./news.page.scss'],
   standalone: true,
-  imports: [IonCardTitle, IonCardContent, IonCard, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCardHeader]
+  imports: [IonButton, IonIcon, IonCardTitle, IonCardContent, IonCard, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCardHeader, RouterLink]
 })
 export class NewsPage implements OnInit {
   myNewsAPIKey: string = 'pub_6395725db9955eaaa1ef854417fc8c8c1ef77' //API key for newdata.io
@@ -27,7 +30,10 @@ export class NewsPage implements OnInit {
   constructor(
     private route: ActivatedRoute, //Inject to recieve routed data
     private mhs:MyHttpService //Inject for http requests
-  ) { }
+  ) 
+  {
+    addIcons({ homeOutline }); //add Home Button icon
+   }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {

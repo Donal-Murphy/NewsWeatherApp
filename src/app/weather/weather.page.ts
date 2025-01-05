@@ -1,26 +1,32 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonIcon, IonButton } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { MyHttpService } from '../services/my-http.service';
 import { HttpOptions } from '@capacitor/core';
 import { MyDataService } from '../services/my-data.service';
+import { addIcons } from 'ionicons';
+import { homeOutline } from 'ionicons/icons';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.page.html',
   styleUrls: ['./weather.page.scss'],
   standalone: true,
-  imports: [IonCardTitle, IonCardContent, IonCard, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCardHeader]
+  imports: [IonButton, IonIcon, IonCardTitle, IonCardContent, IonCard, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCardHeader, RouterLink]
 })
 export class weatherPage implements OnInit {
   myWeatherAPIKey: string = '2c305234f2bc00b8f732a539d8137552'; //API key for openweathermap.org
 
   capitalCoord: number[] = []; //For storing capitalCoord. Initialise as null
-  weatherData: any = null; //For storing country data from weatherdata.io API. Initialize as empty array
-  units:string = '';
-  errorMessage: string = ''; // For storing error messages
+  countryName: string = ''; //For storing countryName. Initialise as empty string
+  countryCapital: string =''; //For storing countryCapital. Initialise as empty string
+  weatherData: any = {}; //For storing country data from weatherdata.io API. Initialize as empty array
+  units:string = ''; //For storing measurement units. Initialise as empty string
+
+
   options: HttpOptions = {
     url: '' //For storing weatherdata.io api url. Initialise as null
   }
@@ -29,12 +35,17 @@ export class weatherPage implements OnInit {
     private route: ActivatedRoute, //Inject to recieve routed data
     private mhs:MyHttpService, //Inject for http requests
     private MyDataService: MyDataService, //Inject for data storage
-  ) { }
+  ) 
+  {
+    addIcons({ homeOutline }); //add Home Button icon
+   }
 
   async ngOnInit() {
     //Retrieve params from countries page
     this.route.queryParams.subscribe(params => {
-      this.capitalCoord = params['capitalCoord'];
+      this.capitalCoord = params['capitalCoord'],
+      this.countryName = params['countryName'],
+      this.countryCapital = params['countryCapital'];
   });
 
   this.units = await this.MyDataService.get('units'); //Retrieve units
@@ -53,7 +64,7 @@ export class weatherPage implements OnInit {
   } else {
     //Log error message for missing data
     console.error('No coordinates provided.');
-    this.weatherData = null;
+    this.weatherData = {};
   }
 
   }
@@ -68,7 +79,7 @@ export class weatherPage implements OnInit {
     } catch (error) {
       // Handle any errors during the HTTP request
       console.error('Error fetching weather:', error);
-      this.weatherData = null; // Ensure weatherData is empty in case of error
+      this.weatherData = {}; // Ensure weatherData is empty in case of error
     }
   }
 

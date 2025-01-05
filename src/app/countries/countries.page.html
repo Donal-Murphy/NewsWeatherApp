@@ -1,10 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Search results for '{{countryQuery}}'</ion-title>
+    <ion-button [routerLink]="['/home']" slot = "start" fill="clear">
+      <ion-icon slot="icon-only" name="home-outline"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content *ngIf="!errorMessage" [fullscreen]="true">
   <ion-card *ngFor="let country of countryData">
     <img [src]="country.flags.png" alt="Flag of {{country.name.official}}" />
     <ion-card-header>
@@ -13,7 +16,18 @@
   
     <ion-card-content>
       <ion-button (click)="countryNewsSearch(country.cca2, country.name.official)">News</ion-button>
-      <ion-button (click)="countryWeatherSearch(country.capitalInfo.latlng)">Weather</ion-button>
+      <ion-button (click)="countryWeatherSearch(country.capitalInfo.latlng, country.name.official, country.capital)">Weather</ion-button>
     </ion-card-content>
   </ion-card>
+</ion-content>
+
+<ion-content *ngIf="errorMessage">
+<ion-card color="danger">
+  <ion-card-header>
+    <ion-card-title> {{ errorMessage }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    No country found for "{{countryQuery}}"
+  </ion-card-content>
+</ion-card>
 </ion-content>

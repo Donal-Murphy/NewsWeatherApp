@@ -1,3 +1,4 @@
+<!--Toolbar-->
 <ion-header [translucent]="true">
 <ion-toolbar>
   <ion-title>
@@ -7,13 +8,31 @@
     <ion-button [routerLink]="['/settings']" fill="clear">
       <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
     </ion-button>
+    <ion-button (click)="openGitHub()" fill="clear">
+      <ion-icon slot="icon-only" name="logo-github"></ion-icon>
+    </ion-button>
   </ion-buttons>
 </ion-toolbar>
 </ion-header>
 
+<!--Searchbar and button-->
 <ion-content [fullscreen]="true">
   <div class="centered-content">
-    <ion-textarea [(ngModel)]="userInput" label="Enter Country" placeholder="Country Name" style="width: 50%;"></ion-textarea>
-    <ion-button class="wide-button" (click)="countrySearch()" style="width: 50%;" >SEARCH</ion-button>
+    <ion-searchbar
+      show-clear-button="focus"
+      [value]="userInput"
+      (ionInput)="onInput($event)"
+      (ionClear)="onClear()"
+      (keydown.enter)="countrySearch()"
+      placeholder="Enter Country"
+      style="width: 50%;">
+    </ion-searchbar>
+
+    <ion-button
+      class="wide-button"
+      (click)="countrySearch()"
+      style="width: 50%;">
+      SEARCH
+    </ion-button>
   </div>
 </ion-content>
