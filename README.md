@@ -1,4 +1,5 @@
 #About
+
 Ionic mobile application that reads country, weather, and news data from internet resources using REST APIs.
 
 Angular version 18.2.33/ Ionic version  7.2.0.
