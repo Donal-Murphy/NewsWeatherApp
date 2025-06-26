@@ -1,10 +1,9 @@
-#About
-
+# About
 Ionic mobile application that reads country, weather, and news data from internet resources using REST APIs.
 
 Angular version 18.2.33/ Ionic version  7.2.0.
 
-#Instructions
+# Instructions
 Requires installation of Node JS and npm
 
 - Run 'ng serve' from root folder
